@@ -4,9 +4,11 @@
 package eu.fayder.restcountries.v2.rest;
 
 import com.google.gson.*;
+import com.graphqlify.annotation.GraphQLType;
 import eu.fayder.restcountries.domain.ResponseEntity;
 import eu.fayder.restcountries.v2.domain.Country;
 import eu.fayder.restcountries.domain.ICountryRestSymbols;
+import eu.fayder.restcountries.v2.domain.CountryList;
 import org.apache.log4j.Logger;
 
 import javax.ws.rs.*;
@@ -20,6 +22,7 @@ import java.util.List;
 @Provider
 @Path("/v2")
 @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+@GraphQLType(version = "V2", type = CountryList.class)
 public class CountryRest {
 
     private static final Logger LOG = Logger.getLogger(CountryRest.class);
@@ -39,6 +42,7 @@ public class CountryRest {
 
     @GET
     @Path("alpha/{alphacode}")
+    @GraphQLType(version = "V2", type = Country.class)
     public Object getByAlpha(@PathParam("alphacode") String alpha, @QueryParam("fields") String fields) {
         LOG.info("Getting by alpha " + alpha);
         if (isEmpty(alpha) || alpha.length() < 2 || alpha.length() > 3) {

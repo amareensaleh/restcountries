@@ -3,6 +3,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package eu.fayder.restcountries.v1.rest;
 
+import com.graphqlify.annotation.GraphQLType;
+import eu.fayder.restcountries.v1.domain.CountryList;
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -25,6 +27,7 @@ import com.google.gson.Gson;
 @Provider
 @Path("/v1")
 @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+@GraphQLType(type = CountryList.class)
 public class CountryRest {
 
     private static final Logger LOG = Logger.getLogger(CountryRest.class);
@@ -43,6 +46,7 @@ public class CountryRest {
 
     @GET
     @Path("alpha/{alphacode}")
+    @GraphQLType(type = Country.class)
     public Object getByAlpha(@PathParam("alphacode") String alpha) {
         LOG.info("Getting by alpha " + alpha);
         if (isEmpty(alpha) || alpha.length() < 2 || alpha.length() > 3) {

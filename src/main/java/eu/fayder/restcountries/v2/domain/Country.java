@@ -3,10 +3,12 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package eu.fayder.restcountries.v2.domain;
 
+import com.graphqlify.annotation.GraphQLType;
 import eu.fayder.restcountries.domain.BaseCountry;
 
 import java.util.List;
 
+@GraphQLType(version = "V2")
 public class Country extends BaseCountry {
 
     private List<Currency> currencies;

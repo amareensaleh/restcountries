@@ -1,6 +1,7 @@
 package eu.fayder.restcountries.v2.rest;
 
 import com.google.gson.Gson;
+import com.graphqlify.annotation.GraphQLType;
 import com.stripe.Stripe;
 import com.stripe.exception.*;
 import com.stripe.model.Charge;
@@ -28,6 +29,7 @@ public class StripeRest {
     private static final Logger LOG = Logger.getLogger(StripeRest.class);
 
     @POST
+    @GraphQLType(type = Void.class)
     public Object contribute(Contribution contribution) {
         LOG.debug("Contribution: " + contribution);
 
